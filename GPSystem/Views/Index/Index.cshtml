@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="col-md-12">
+    <div class="jumbotron">
+        <h3>Verse Of The Day <span style="padding-left: 1px; font-size: 12px;">from God's Prosperity</span></h3>
+        <h4><strong>Luke 1:68</strong></h4>
+        <p>
+            <strong>68</strong> "Praise be to the Lord, the God of Israel, because he has come and has redeemed his people.
+        </p>
+    </div>
+</div>
+
+@* Main *@
+<div class="col-md-12 text-center">
+    <div class="col-md-9 text-left" style="padding: 0px;">
+        <div>
+            <h4>Top News</h4>
+        </div>
+        <div>
+            <h4>Recent Events</h4>
+        </div>
+        <div>
+            <h4>Groups</h4>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="">
+                <p style="margin-bottom: -10px;"><span id="txt"></span></p>
+            </div>
+            <div class="text-left" style="padding: 10px;">
+                <p><strong>System Members : </strong> 30</p>
+                <p><strong>Church Members : </strong> 80</p>
+                <p><strong>Groups : </strong> 80</p>
+                <p><strong>Events : </strong> 80</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+        "<span style='font-size: 18px; font-weight: bold;'>" + h + "</span>" + ":"
+        + "<span style='font-size: 15px; font-weight: bold;'>" + m + "</span>" + ":" + s
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) { i = "0" + i }  // add zero in front of numbers < 10
+        return i
+    }
+
+    startTime()
+</script>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="@Url.Content("~/content/favicon.png")" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="border: none;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--h4 style="color: #eee; padding-top: 5px;">God's Prosperity</h4 -->
+                <div style="color: #eee; padding-top: 5px;">
+                    @Html.Partial("_HeaderPartial")
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+            </div>
+    <br /><br />
+                <footer>
+                    <div class="text-center navbar navbar-inverse" style="width: 100%; color: #eee; border-radius: 0px; padding: 10px; border: none;">
+            <p>&copy; @DateTime.Now.Year - God's Prosperity @if (ViewBag.Church !=null) {@ViewBag.Church}</p>
+            <p style="margin-top: -10px; margin-bottom: -1px;">
+                @Html.ActionLink("Privacy Statement", "Privacy", "Home", new { @style="text-decoration: none;"}) | 
+                @Html.ActionLink("Terms of Use", "Terms", "Home", new { @style = "text-decoration: none;" }) 
+            </p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="" class="dropdown-toggle" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Church Management</a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li>@Html.ActionLink("Church List", "Index", "Church")</li>
+                <li>@Html.ActionLink("Church Request", "Index", "ChurchRequest")</li>
+                <li>@Html.ActionLink("Church Events", "Index", "Event")</li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#">Reporting Services</a></li>
+            </ul>
+        </li>
+        <li>@Html.ActionLink("User Management", "About", "Home")</li>
+    </ul>
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div class="dropdown" style="margin-top: 8px;">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        @ViewBag.Fullname
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href=""><span class="glyphicon glyphicon-cog"></span> Profile</a></li>
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Security", "Index", "Manage")</li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    }
+}
+else if (Request.IsAuthenticated && User.IsInRole("Member"))
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Church")</li>
+        <li>@Html.ActionLink("Groups", "Index", "Group")</li>
+        <li>@Html.ActionLink("Events", "Index", "Event")</li>
+        <li>@Html.ActionLink("Members", "Contact", "Home")</li>
+        <li>@Html.ActionLink("About", "Contact", "Home")</li>
+    </ul>
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div class="dropdown" style="margin-top: 8px;">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        @ViewBag.Fullname
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href=""><span class="glyphicon glyphicon-cog"></span> Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">SMS</a></li>
+                        <li><a href="#">Chat</a></li>
+                        <li><a href="#">Emailer</a></li>
+                        <li class="divider"></li>
+                        <li><a href="">Calendar</a></li>
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Security", "Index", "Manage")</li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
