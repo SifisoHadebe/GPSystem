@@ -32,11 +32,11 @@ namespace GPSystem.Controllers
                 var groups = new List<Group>();
                 foreach (var g in list)
                 {
-                    if (db.GroupMembers.Where(gm => gm.GroupId == g.Id).Count() < 2) 
+                    if (db.GroupMembers.Where(gm => gm.GroupId == g.Id).Count() < 2)
                     {
                         db.Group.Remove(g);
                         var tempMember = db.GroupMembers.Where(gm => gm.GroupId == g.Id).ToList();
-                        foreach(var x in tempMember)
+                        foreach (var x in tempMember)
                         {
                             db.GroupMembers.Remove(x);
                         }

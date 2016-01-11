@@ -4,79 +4,134 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details Event</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Church.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Church.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.Label("Event date")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EventDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Venue)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Venue)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.More)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.More)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventDate)
-        </dd>
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+    
+   <div class="col-md-8" style="border-left: 2px solid #999;">
+       <h4><strong>Comment</strong></h4>
+       <div class="input-group">
+           <input type="text" style="max-width: 100%" id="userComment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
+           <span class="input-group-btn" onclick="addComment()">
+               <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
+           </span>
+       </div>
+       <hr />
+       <div>
+           <section class="comment" style="height: 300px; overflow-y:auto; overflow-x: hidden">
+               <article class="row">
+                   <div class="col-md-1 col-sm-2 hidden-xs">
+                       <img class="img-responsive img-circle" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                   </div>
+                   <div class="col-md-11">
+                       <div class="panel panel-default arrow left">
+                           <div class="panel-body">
+                               <header class="text-left">
+                                   <div class="comment-user">That Guy</div>
+                                   <time class="comment-date" datetime="16-12-2014 01:05"><i class="glyphicon glyphicon-time"></i> Dec 16, 2014</time>
+                               </header>
+                               <div class="comment-post">
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                   </p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </article>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Venue)
-        </dt>
+               <article class="row">
+                   <div class="col-md-1 col-sm-2 hidden-xs">
+                       <img class="img-responsive img-circle" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                   </div>
+                   <div class="col-md-11">
+                       <div class="panel panel-default arrow left">
+                           <div class="panel-body">
+                               <header class="text-left">
+                                   <div class="comment-user">That Guy</div>
+                                   <time class="comment-date" datetime="16-12-2014 01:05"><i class="glyphicon glyphicon-time"></i> Dec 16, 2014</time>
+                               </header>
+                               <div class="comment-post">
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                   </p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </article>
 
-        <dd>
-            @Html.DisplayFor(model => model.Venue)
-        </dd>
+               <article class="row">
+                   <div class="col-md-1 col-sm-2 hidden-xs">
+                       <img class="img-responsive img-circle" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                   </div>
+                   <div class="col-md-11">
+                       <div class="panel panel-default arrow left">
+                           <div class="panel-body">
+                               <header class="text-left">
+                                   <div class="comment-user">That Guy</div>
+                                   <time class="comment-date" datetime="16-12-2014 01:05"><i class="glyphicon glyphicon-time"></i> Dec 16, 2014</time>
+                               </header>
+                               <div class="comment-post">
+                                   <p>
+                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                   </p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </article>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.More)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.More)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.show)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.show)
-        </dd>
-
-    </dl>
+           </section>
+       </div>
+   </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
