@@ -46,6 +46,7 @@ namespace GPSystem.Controllers
         public ActionResult Details(int id)
         {
             var Event = db.Event.Find(id);
+            ViewBag.Month = Event.EventDate.ToString("MMM");
             return View(Event);
         }
 
@@ -130,5 +131,34 @@ namespace GPSystem.Controllers
                 return View();
             }
         }
+
+        public bool Comment(long Id,string comment)
+        {
+            #region
+            string currentUserId = User.Identity.GetUserId(); //getting userId
+            var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+            ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+            #endregion
+
+            EventComment c = new EventComment();
+            c.EventId = Id;
+            c.Date = DateTime.Now;
+            c.UserId = query.Id;
+            c.Text = comment;
+
+            db.EventComment.Add(c);
+            db.SaveChanges();
+            return true;
+        }
+
+        public List<EventComment> GetComments(long Id)
+        {
+            var comments = from ec in db.EventComment
+                           where ec.EventId == Id
+                           orderby ec.Date
+                           select ec;
+            return comments.ToList();
+        }
+
     }
 }

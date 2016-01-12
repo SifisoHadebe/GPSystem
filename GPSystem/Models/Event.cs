@@ -43,4 +43,17 @@ namespace GPSystem.Models
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime ArchiveDate { get; set; }
     }
+
+    public class EventComment
+    {
+        public long Id { get; set; }
+
+        public string UserId { get; set; }
+
+        public long EventId { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string Text { get; set; }
+    }
 }

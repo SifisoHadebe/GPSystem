@@ -3,135 +3,97 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<div class="col-md-12">
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 <h2>Details Event</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
+    <ul class="event-list">
+    <li>
+        <time datetime="@Html.DisplayFor(model => model.EventDate)">
+            <span class="day">@Html.DisplayFor(model => model.EventDate.Day)</span>
+            <span class="month">@ViewBag.Month</span>
+            <span class="year">@Html.DisplayFor(model => model.EventDate.Year)</span>
+        </time>        
+        <div class="info">
+            <h2 class="title">@Html.DisplayFor(model => model.Name)</h2>
+            <p class="desc">@Html.DisplayFor(model => model.Description)</p>
+            <p class="desc" style="font-size: 14px;"><strong>Venue : </strong>@Html.DisplayFor(model => model.Venue)</p>
+            <p class="desc" style="font-size: 14px;"><strong>More : </strong>@Html.DisplayFor(model => model.More)</p>
+        </div>
+    </li>
+    </ul>
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.Label("Event date")
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.EventDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Venue)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Venue)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.More)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.More)
-            </dd>
-
-        </dl>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    </div>
-    
-   <div class="col-md-8" style="border-left: 2px solid #999;">
-       <h4><strong>Comment</strong></h4>
-       <div class="input-group">
-           <input type="text" style="max-width: 100%" id="userComment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
-           <span class="input-group-btn" onclick="addComment()">
-               <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
-           </span>
-       </div>
-       <hr />
-       <div>
-           <section class="comment" style="height: 300px; overflow-y:auto; overflow-x: hidden">
-               <article class="row">
-                   <div class="col-md-1 col-sm-2 hidden-xs">
-                       <img class="img-responsive img-circle" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                   </div>
-                   <div class="col-md-11">
-                       <div class="panel panel-default arrow left">
-                           <div class="panel-body">
-                               <header class="text-left">
-                                   <div class="comment-user">That Guy</div>
-                                   <time class="comment-date" datetime="16-12-2014 01:05"><i class="glyphicon glyphicon-time"></i> Dec 16, 2014</time>
-                               </header>
-                               <div class="comment-post">
-                                   <p>
-                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </article>
-
-               <article class="row">
-                   <div class="col-md-1 col-sm-2 hidden-xs">
-                       <img class="img-responsive img-circle" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                   </div>
-                   <div class="col-md-11">
-                       <div class="panel panel-default arrow left">
-                           <div class="panel-body">
-                               <header class="text-left">
-                                   <div class="comment-user">That Guy</div>
-                                   <time class="comment-date" datetime="16-12-2014 01:05"><i class="glyphicon glyphicon-time"></i> Dec 16, 2014</time>
-                               </header>
-                               <div class="comment-post">
-                                   <p>
-                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </article>
-
-               <article class="row">
-                   <div class="col-md-1 col-sm-2 hidden-xs">
-                       <img class="img-responsive img-circle" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                   </div>
-                   <div class="col-md-11">
-                       <div class="panel panel-default arrow left">
-                           <div class="panel-body">
-                               <header class="text-left">
-                                   <div class="comment-user">That Guy</div>
-                                   <time class="comment-date" datetime="16-12-2014 01:05"><i class="glyphicon glyphicon-time"></i> Dec 16, 2014</time>
-                               </header>
-                               <div class="comment-post">
-                                   <p>
-                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </article>
-
-
-           </section>
-       </div>
-   </div>
 </div>
+<hr />
+<div class="row" style="border-radius: 1px;">
+        <div class="col-md-12" style="margin-top: -20px;">
+            <h4>Comments <span class="glyphicon glyphicon-pencil"></span></h4>
+            <div class="input-group col-md-12">
+                <input type="text" style="max-width: 100%" id="userComment" class="form-control input-md chat-input" placeholder="Write your message here..." />
+                <span class="input-group-btn" onclick="addComment(@Model.Id)">
+                    <a href="#" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-12" style="height: 300px; overflow-y: auto; top: 20px;">
+            <ul class="list-group">
+                <li class="list-group-item" style="margin-top: 20px;">
+                    <h5 class="list-group-item-heading">
+                        <a href="#">
+                            <strong>
+                                Johny Bravo
+                                <span style="color: #999; opacity: 0.7; font-size: 10px; font-weight: lighter;">2 days ago</span>
+                            </strong>
+                        </a>
+                    </h5>
+                    <p class="message-content">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. </p>
+                </li>
+
+                <li class="list-group-item" style="margin-top: 20px;">
+                    <h5 class="list-group-item-heading">
+                        <a href="#">
+                            <strong>
+                                Johny Bravo
+                                <span style="color: #999; opacity: 0.7; font-size: 10px; font-weight: lighter;">2 days ago</span>
+                            </strong>
+                        </a>
+                    </h5>
+                    <p class="message-content">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. </p>
+                </li>
+
+                <li class="list-group-item" style="margin-top: 20px;">
+                    <h5 class="list-group-item-heading">
+                        <a href="#">
+                            <strong>
+                                Johny Bravo
+                                <span style="color: #999; opacity: 0.7; font-size: 10px; font-weight: lighter;">2 days ago</span>
+                            </strong>
+                        </a>
+                    </h5>
+                    <p class="message-content">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+    <script>
+    var comments={};
+    $(document).ready(function(){
+        var url = "../GetComments";
+        var id = @Model.Id;
+        $.get(url, {"Id" : id}, function(data){
+            alert(data);
+        })
+    });
+
+    function addComment(Id) {
+        var text =document.getElementById("userComment").value;
+        var url = "../Comment";
+        $.post(url,{"Id": Id, "comment" : text}, function(data){
+            alert("yes");
+        });
+    }
+    </script>
