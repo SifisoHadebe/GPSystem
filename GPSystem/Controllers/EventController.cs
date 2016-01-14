@@ -3,6 +3,7 @@ using GPSystem.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,7 +27,10 @@ namespace GPSystem.Controllers
                     ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
                     #endregion
 
-                    var list = db.Event.OrderByDescending(e => e.DateCreated).Where(e=>e.Archive == false).ToList();
+                    var list = from e in db.Event
+                               orderby e.EventDate ascending
+                               where e.ChurchId == query.ChurchId
+                               select e;
                     return View(list);
                 }
                 else
@@ -151,13 +155,42 @@ namespace GPSystem.Controllers
             return true;
         }
 
-        public List<EventComment> GetComments(long Id)
+        public JsonResult GetComments(long Id)
         {
-            var comments = from ec in db.EventComment
-                           where ec.EventId == Id
-                           orderby ec.Date
-                           select ec;
-            return comments.ToList();
+            //var comments = db.EventComment.Where(e => e.EventId == Id).Join(ac.Users, e => e.UserId, u => u.Id, (e, u) => new
+            //{
+            //    Username = u.Name + " " + u.Surname,
+            //    E = e.Text,
+            //    Date = e.Date
+            //}).AsEnumerable().Select(x => new {
+            //    // wanna create a dummy table
+            //    //problem is EventComment 
+            //    //do not want to use it like that "new EventComment"
+            //    Username  = x.Username,
+            //    E = x.E,
+            //    Date = x.Date
+            //    //Ok, give me 15 minutes I will try it and see if I can redo what I did yesterday
+            //    //ok run it
+            //    //Let me try it one more time 
+            //});
+
+            ////var users = (from u in ac.Users select new { Id = u.Id,
+            ////    Name = u.Name + " " + u.Surname }).ToArray();
+            var comments = from e in db.EventComment.AsEnumerable()
+                           orderby e.Date descending
+                           where e.EventId == Id
+                    select new
+                    {
+                        Id = e.Id,
+                        Username = "To Change",
+                        UserId = e.UserId,
+                        Text = e.Text,
+                        Day = e.Date.Day,
+                        Month = e.Date.ToString("MMMM"),
+                        Year = e.Date.Year
+                    };
+
+            return Json(comments, JsonRequestBehavior.AllowGet);
         }
 
     }

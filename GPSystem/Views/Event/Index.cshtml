@@ -1,81 +1,44 @@
 ﻿@model IEnumerable<GPSystem.Models.Event>
-
+@Facebook.LikeButton()
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div class="col-md-8">
-    <table class="table">
-        <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Church.Name)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.EventDate)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Venue)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.More)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.show)
-                </th>*@
-            <th>Action</th>
-        </tr>
-
-        @if (Model != null)
-        {
-            foreach (var item in Model)
+<h2 style="margin-top: -4px; padding: 0px 12px;">Evets List</h2>
+<div style="margin-top: 22px;">
+    <div class="col-md-12" style="height: 300px; overflow-y: auto; top: -3px;" id="commentsList">
+        <ul class='list-group event-list'>
+            @if (Model != null)
             {
-                <tr>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Church.Name)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.DateCreated)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventDate)
-                    </td>
-                    @* <td>
-                            @Html.DisplayFor(modelItem => item.Venue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.More)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.show)
-                        </td>*@
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                    </td>
-                </tr>
+                foreach (var item in Model)
+                {
+                <li style="margin-bottom: 20px;">
+                    <time datetime="2014-07-20">
+                        <span class="day">@item.EventDate.Day</span>
+                        <span class="month" style="font-size: 19px; padding: 7px 0px;">
+                            @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@item.EventDate.Month)
+                        </span>
+                        <span class="year">@item.EventDate.Year</span>
+                    </time>
+                    <img class="hidden" alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
+                    <div class="info">
+                        <h2 class="title">@item.Name</h2>
+                        <p class="desc">@item.Description</p>
+                        <p class="desc" style="position: absolute; bottom: 6px;">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm", @style = "border-radius: 0px;" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm", @style = "border-radius: 0px;" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm", @style = "border-radius: 0px;" })
+                        </p>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li class="facebook" style="width:33%;margin: 16px 0px;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                            <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                }
             }
-        }
-
-    </table>
+        </ul>
+    </div>
 </div>

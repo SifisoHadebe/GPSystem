@@ -27,73 +27,53 @@
 </div>
 <hr />
 <div class="row" style="border-radius: 1px;">
-        <div class="col-md-12" style="margin-top: -20px;">
+        <div class="col-md-12" style="margin-top: -20px; margin-bottom: 10px;">
             <h4>Comments <span class="glyphicon glyphicon-pencil"></span></h4>
             <div class="input-group col-md-12">
-                <input type="text" style="max-width: 100%" id="userComment" class="form-control input-md chat-input" placeholder="Write your message here..." />
+                <input type="text" style="max-width: 100%;" id="userComment" class="form-control input-md chat-input" placeholder="Write your message here..." />
                 <span class="input-group-btn" onclick="addComment(@Model.Id)">
                     <a href="#" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
                 </span>
             </div>
         </div>
-        <div class="col-md-12" style="height: 300px; overflow-y: auto; top: 20px;">
-            <ul class="list-group">
-                <li class="list-group-item" style="margin-top: 20px;">
-                    <h5 class="list-group-item-heading">
-                        <a href="#">
-                            <strong>
-                                Johny Bravo
-                                <span style="color: #999; opacity: 0.7; font-size: 10px; font-weight: lighter;">2 days ago</span>
-                            </strong>
-                        </a>
-                    </h5>
-                    <p class="message-content">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. </p>
-                </li>
-
-                <li class="list-group-item" style="margin-top: 20px;">
-                    <h5 class="list-group-item-heading">
-                        <a href="#">
-                            <strong>
-                                Johny Bravo
-                                <span style="color: #999; opacity: 0.7; font-size: 10px; font-weight: lighter;">2 days ago</span>
-                            </strong>
-                        </a>
-                    </h5>
-                    <p class="message-content">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. </p>
-                </li>
-
-                <li class="list-group-item" style="margin-top: 20px;">
-                    <h5 class="list-group-item-heading">
-                        <a href="#">
-                            <strong>
-                                Johny Bravo
-                                <span style="color: #999; opacity: 0.7; font-size: 10px; font-weight: lighter;">2 days ago</span>
-                            </strong>
-                        </a>
-                    </h5>
-                    <p class="message-content">Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. </p>
-                </li>
-            </ul>
+        <div class="col-md-12" style="height: 300px; overflow-y: auto; top: -3px;" id="commentsList">
+           
         </div>
 
     </div>
 </div>
 
     <script>
-    var comments={};
-    $(document).ready(function(){
-        var url = "../GetComments";
-        var id = @Model.Id;
-        $.get(url, {"Id" : id}, function(data){
-            alert(data);
-        })
-    });
+
+        function getComments(){
+            var url = "../GetComments/" + @Model.Id;
+            $.get(url, function(data){
+                var items = "<ul class='list-group'>";
+                $.each(data, function(i, comment){
+                    items += "<li class='list-group-item' style='margin-top: 20px;'>";
+                    items +="<h5 class='list-group-item-heading'>";
+                    items += "<a href='#'><strong>";
+                    items += comment.Username;
+                    items += "</strong></a><span style='padding-left:8px; color: #555; opacity: 0.7; font-size: 10px; font-weight: lighter;'>" + comment.Day + " " + comment.Month + " " + comment.Year + "</span>";
+                    items += "</h5>";
+                    items += "<p class='message-content'>" + comment.Text + "</p></li>"
+                });
+
+                items +="</ul>";
+
+                $("#commentsList").html(items);
+            });
+        }
+
+        $(document).ready(function(){
+            getComments();
+        });
 
     function addComment(Id) {
         var text =document.getElementById("userComment").value;
         var url = "../Comment";
         $.post(url,{"Id": Id, "comment" : text}, function(data){
-            alert("yes");
+            getComments();
         });
     }
     </script>
