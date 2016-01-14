@@ -51,6 +51,7 @@ namespace GPSystem.Controllers
         {
             var Event = db.Event.Find(id);
             ViewBag.Month = Event.EventDate.ToString("MMM");
+            ViewBag.key = User.Identity.GetUserId();
             return View(Event);
         }
 
@@ -153,6 +154,21 @@ namespace GPSystem.Controllers
             db.EventComment.Add(c);
             db.SaveChanges();
             return true;
+        }
+
+        public bool removeComment(long Id)
+        {
+            try
+            {
+                var comment = db.EventComment.Find(Id);
+                db.EventComment.Remove(comment);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public JsonResult GetComments(long Id)
