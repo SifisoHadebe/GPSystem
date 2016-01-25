@@ -1,4 +1,5 @@
-﻿@{
+﻿@model GPSystem.Models.IndexModelView
+@{
     ViewBag.Title = "Index";
 }
 <div class="col-md-12">
@@ -15,10 +16,66 @@
 <div class="col-md-12 text-center">
     <div class="col-md-9 text-left" style="padding: 0px;">
         <div>
-            <h4>Top News</h4>
+            <h4 style="text-decoration: underline;">New Members</h4>
+            <div>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+            {
+                foreach (var member in Model.Members)
+                {
+                                <tr>
+                                    <td>@member.Name &nbsp; @member.Surname</td>
+                                    <td>@member.UserName</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <p>@Html.ActionLink("More Members", "Index", "Member")</p>
         </div>
+        <br />
         <div>
-            <h4>Recent Events</h4>
+            <legend>Recent Events <span style="color: #808080; font-size:x-small; padding-left: 8px;">@ViewBag.EventCount events in total</span></legend>
+                @if (Model != null)
+                {
+                    <ul class='list-group event-list'>
+                        @foreach (var item in Model.Events)
+                        {
+                        <li style="margin-bottom: 20px;">
+                            <time datetime="2014-07-20">
+                                <span class="day">@item.EventDate.Day</span>
+                                <span class="month" style="font-size: 19px; padding: 7px 0px;">
+                                    @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@item.EventDate.Month)
+                                </span>
+                                <span class="year">@item.EventDate.Year</span>
+                            </time>
+                            <img class="hidden" alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
+                            <div class="info">
+                                <h2 class="title">@item.Name</h2>
+                                <p class="desc">@item.Description</p>
+                                <p class="desc" style="position: absolute; bottom: 6px;">
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm", @style = "border-radius: 0px;" })
+                                </p>
+                            </div>
+                            <div class="social">
+                                <ul>
+                                    <li class="facebook" style="width:33%;margin: 16px 0px;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                }
+                <p>@Html.ActionLink("More Events", "Index", "Event")</p>
         </div>
         <div>
             <h4>Groups</h4>
@@ -31,9 +88,9 @@
                 <p style="margin-bottom: -10px;"><span id="txt"></span></p>
             </div>
             <div class="text-left" style="padding: 10px;">
-                <p><strong>Members : </strong> 30</p>
+                <p><strong>Members : </strong> @ViewBag.Members</p>
                 <p><strong>Groups : </strong> 80</p>
-                <p><strong>Events : </strong> 80</p>
+                <p><strong>Events : </strong> @ViewBag.EventCount</p>
             </div>
         </div>
     </div>

@@ -25,6 +25,7 @@ namespace GPApp.Context
         public DbSet<EventComment> EventComment { get; set; }
         public DbSet<Group> Group { get; set; }
 
+        public DbSet<Post> Post { get; set; }
         public System.Data.Entity.DbSet<GPSystem.Models.GroupMember> GroupMembers { get; set; }
     }
 }

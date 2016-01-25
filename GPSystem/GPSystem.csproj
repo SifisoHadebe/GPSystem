@@ -181,12 +181,14 @@
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ChurchTrashController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EnumDropDownListFor.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Church.cs" />
+    <Compile Include="Models\ChurchMembersView.cs" />
     <Compile Include="Models\ChurchRequest.cs" />
     <Compile Include="Models\ChurchTrash.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -194,7 +196,9 @@
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupMemberView.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IndexModelView.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -233,6 +237,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="imgRepo\profilePic\User-icon.png" />
     <Content Include="imgRepo\stardust.png" />
+    <Content Include="imgRepo\user.png" />
     <Content Include="imgRepo\walk.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -302,6 +307,8 @@
     <Content Include="Views\GroupMember\Index.cshtml" />
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Index\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,16 @@
+﻿@model GPApp.Models.Church
+
+@{
+    ViewBag.Title = "About";
+}
+
+<h3>About @Model.Name</h3>
+<p><strong>Church Name</strong> : @Model.Name</p>
+<p><strong>Description</strong> : @Model.Description</p>
+
+<legend>Contacts</legend>
+<p><strong>@Model.Address1</strong></p>
+<p>@Model.Address2</p>
+<p>@Model.Code</p>
+<br />
+<p>@Model.Telephone</p>
