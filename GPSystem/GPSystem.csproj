@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ChurchTrashController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -309,9 +310,13 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Index\About.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="imgRepo\PostRepo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

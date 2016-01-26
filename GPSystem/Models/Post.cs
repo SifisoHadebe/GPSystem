@@ -18,8 +18,6 @@ namespace GPSystem.Models
         public virtual Church Church { get; set; }
 
         public string Author { get; set; }
-        [ForeignKey("Author")]
-        public ApplicationUser User { get; set; }
 
         [Required]
         [MaxLength(25)]
@@ -29,6 +27,8 @@ namespace GPSystem.Models
         public string Text { get; set; }
 
         public DateTime Date { get; set; }
+
+        public String Picture { get; set; }
 
         public bool? Public { get; set; }
     }
