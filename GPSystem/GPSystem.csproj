@@ -179,6 +179,7 @@
     <Compile Include="Controllers\GroupMemberController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ChurchTrashController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Models\GroupMemberView.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexModelView.cs" />
+    <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -313,6 +315,8 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\Mail\Index.cshtml" />
+    <Content Include="Views\Mail\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

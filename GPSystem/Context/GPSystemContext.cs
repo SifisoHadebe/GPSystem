@@ -27,5 +27,7 @@ namespace GPApp.Context
 
         public DbSet<Post> Post { get; set; }
         public System.Data.Entity.DbSet<GPSystem.Models.GroupMember> GroupMembers { get; set; }
+
+        public System.Data.Entity.DbSet<GPSystem.Models.MailModel> MailModels { get; set; }
     }
 }
