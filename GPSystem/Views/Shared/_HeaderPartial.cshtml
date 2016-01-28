@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <h4>GP Dashboard</h4>
+    <h4 style="font-weight: bold; margin-top: 220px;">GP Dashboard</h4>
 }else if (Request.IsAuthenticated && User.IsInRole("Member"))
 {
-    <h4 style="color: #F78F20; font-weight: bold;">@ViewBag.Church</h4>
+    <h4 style="font-weight: bold; padding-top:3px;">@ViewBag.Church</h4>
 }else
 {
     <h4>God's Prosperity</h4>

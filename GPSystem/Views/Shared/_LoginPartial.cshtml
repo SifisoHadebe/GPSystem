@@ -40,9 +40,9 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
 {
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Home", "Index", "Church")</li>
+        <li>@Html.ActionLink("News", "Index", "Church")</li>
         <li>@Html.ActionLink("Groups", "Index", "Group")</li>
         <li>@Html.ActionLink("Events", "Index", "Event")</li>
-        <li>@Html.ActionLink("Members", "Index", "Member")</li>
         <li>@Html.ActionLink("About", "Contact", "Home")</li>
     </ul>
 
@@ -59,6 +59,7 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
                     <ul class="dropdown-menu">
                         <li><a href=""><span class="glyphicon glyphicon-cog"></span> Profile</a></li>
                         <li class="divider"></li>
+                        <li>@Html.ActionLink("Members", "Index", "Member")</li>
                         <li><a href="#">SMS</a></li>
                         <li><a href="#">Chat</a></li>
                         <li><a href="#">Emailer</a></li>

@@ -238,6 +238,12 @@
     <Content Include="Facebook\Login.cshtml" />
     <Content Include="App_Code\Facebook.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="imgRepo\calendar-daily-date-day-event-history-month-plan.png" />
+    <Content Include="imgRepo\Calender.png" />
+    <Content Include="imgRepo\glad-tidings-of-great-joy-the-birth-of-jesus-christ.png" />
+    <Content Include="imgRepo\jesus_png_9_by_mariamlouis-d5ew6py.png" />
+    <Content Include="imgRepo\News.png" />
+    <Content Include="imgRepo\photo.jpg" />
     <Content Include="imgRepo\profilePic\User-icon.png" />
     <Content Include="imgRepo\stardust.png" />
     <Content Include="imgRepo\user.png" />

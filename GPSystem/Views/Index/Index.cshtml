@@ -2,22 +2,30 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="col-md-12">
-    <div class="jumbotron">
-        <h3>Verse Of The Day <span style="padding-left: 1px; font-size: 12px;">from God's Prosperity</span></h3>
-        <h4><strong>Luke 1:68</strong></h4>
-        <p>
-            <strong>68</strong> "Praise be to the Lord, the God of Israel, because he has come and has redeemed his people.
-        </p>
-    </div>
-</div>
 
 @* Main *@
 <div class="col-md-12 text-center">
     <div class="col-md-9 text-left" style="padding: 0px;">
-        <div>
-            <h4 style="text-decoration: underline;">New Members</h4>
-            <div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <img src="~/imgRepo/News.png" style="width: 120px;" class="img-responsive center-block" />
+                <h4 class="text-center">News</h4>
+            </div>
+            <div class="panel-body">
+                <p>2222</p>
+
+                <p style="padding-left: 5px;">@Html.ActionLink("More News", "Index", "Member")</p>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <img src="~/imgRepo/user.png" class="img-responsive img-circle center-block" />
+                <h4 class="text-center">New Members<span style="color: #808080; font-size:x-small; padding-left: 8px;">@ViewBag.Members Member(s) in total</span></h4>
+            </div>
+            
+            <div class="panel-body">
                 <table class="table table-responsive">
                     <thead>
                         <tr>
@@ -38,54 +46,61 @@
                         }
                     </tbody>
                 </table>
+                <p style="padding-left: 5px;">@Html.ActionLink("More Members", "Index", "Member")</p>
             </div>
-            <p>@Html.ActionLink("More Members", "Index", "Member")</p>
         </div>
         <br />
-        <div>
-            <legend>Recent Events <span style="color: #808080; font-size:x-small; padding-left: 8px;">@ViewBag.EventCount events in total</span></legend>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <img src="~/imgRepo/Calender.png" style="width: 130px;" class="img-responsive img-circle center-block" />
+                <h4 class="text-center">Recent Events <span style="color: #808080; font-size:x-small; padding-left: 8px;">@ViewBag.EventCount events in total</span></h4>
+            </div>
+            <div>
                 @if (Model != null)
                 {
-                    <ul class='list-group event-list'>
+                    <table class="table table-striped table-responsive">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
                         @foreach (var item in Model.Events)
                         {
-                        <li style="margin-bottom: 20px;">
-                            <time datetime="2014-07-20">
-                                <span class="day">@item.EventDate.Day</span>
-                                <span class="month" style="font-size: 19px; padding: 7px 0px;">
-                                    @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@item.EventDate.Month)
-                                </span>
-                                <span class="year">@item.EventDate.Year</span>
-                            </time>
-                            <img class="hidden" alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
-                            <div class="info">
-                                <h2 class="title">@item.Name</h2>
-                                <p class="desc">@item.Description</p>
-                                <p class="desc" style="position: absolute; bottom: 6px;">
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm", @style = "border-radius: 0px;" })
-                                </p>
-                            </div>
-                            <div class="social">
-                                <ul>
-                                    <li class="facebook" style="width:33%;margin: 16px 0px;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
-                                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
-                                </ul>
-                            </div>
-                        </li>
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.EventDate</td>
+                                <td>@Html.ActionLink("Details", "Details", "Event", new { id = item.Id }, new { @class = "btn btn-default btn-sm", @style = "border-radius: 0px;" })</td>
+                            </tr>
                         }
-                    </ul>
+                    </table>
                 }
-                <p>@Html.ActionLink("More Events", "Index", "Event")</p>
+                else
+                {
+                    <p>There are no events created.</p>
+                }
+                <p style="padding-left: 20px;">@Html.ActionLink("More Events", "Index", "Event")</p>
+            </div>
         </div>
-        <div>
-            <h4>Groups</h4>
-        </div>
+        
     </div>
 
-    <div class="col-md-3">
-        <div class="panel panel-default">
+    <div class="col-md-3 right">
+
+        <div class="panel panel-primary">
             <div class="panel-heading" style="">
-                <p style="margin-bottom: -10px;"><span id="txt"></span></p>
+                <span class="first animated slideInLeft">N</span>otification Panel
+            </div>
+            <div class="text-left" style="padding: 10px;">
+                <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-time first"></span> </strong> <span id="txt" style="padding-left: 10px;"></span></p>
+                <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-envelope first"></span> </strong> <span style="padding-left: 10px;">22</span></p>
+                <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-comment first"></span> </strong> <span style="padding-left: 10px;">22</span></p>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="">
+                <span class="first">M</span>y Church Stat
             </div>
             <div class="text-left" style="padding: 10px;">
                 <p><strong>Members : </strong> @ViewBag.Members</p>
@@ -93,6 +108,7 @@
                 <p><strong>Events : </strong> @ViewBag.EventCount</p>
             </div>
         </div>
+
     </div>
 
 </div>
@@ -108,7 +124,7 @@
         s = checkTime(s);
         document.getElementById('txt').innerHTML =
         "<span style='font-size: 18px; font-weight: bold;'>" + h + "</span>" + ":"
-        + "<span style='font-size: 15px; font-weight: bold;'>" + m + "</span>" + ":" + s
+        + "<span style='font-size: 16px; font-weight: bold;'>" + m + "</span>" + ":" + s
         var t = setTimeout(startTime, 500);
     }
     function checkTime(i) {

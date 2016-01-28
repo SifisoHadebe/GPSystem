@@ -3,44 +3,41 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
-
+<h2>@ViewBag.Title</h2><hr />
+<div class="animated slideInRight">
 <div class="col-md-6">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+            <label class = "col-md-4 control-label">Name <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Surname, new { @class = "col-md-4 control-label" })
+            <label class="col-md-4 control-label">Surname <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+            <label class="col-md-4 control-label">Email <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+            <label class="col-md-4 control-label">Password <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
+            <label class="col-md-4 control-label">Confirm Password <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             </div>
@@ -49,33 +46,36 @@
         <legend>Miscellaneous Info</legend>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
+            <label class="col-md-4 control-label">Gender <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.EnumDropDownListFor(m => m.Gender, "Select Gender", new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("My Church", new { @class = "col-md-4 control-label" })
+            <label class="col-md-4 control-label">Church I Belong To <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.DropDownListFor(m => m.ChurchId, new SelectList(ViewBag.Churches, "Id", "Name"), "Select a church", new { @class = "form-control" })
-                @Html.ActionLink("Create New", "Create", new { controller = "ChurchRequest" }) <br />
-                <span style="font-style:italic; font-size: 13px;"><strong>NB: </strong> Use the link above if the church you belong to is not listed.</span>
+                Can't find your church? <a href="">Request It.</a> <br />
             </div>
-        </div>
-        <p>
-            Please Note that by clicking <strong>Register</strong>, you are accepting our <a href="~/Views/Home/Terms.cshtml">Terms of use</a> and understand our @Html.ActionLink("Privacy Statement", "Privacy", "Home", new { @style = "text-decoration: none;" }).
-        </p>               
+        </div>              
 
         <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
-                <input type="submit" class="btn btn-default" value="Register" />
+                <input type="submit" class="btn btn-success" value="Register" />
             </div>
         </div>
 
     }
-
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
 </div>
+<div class="col-md-5 col-md-offset-1">
+    <img src="~/imgRepo/jesus_png_9_by_mariamlouis-d5ew6py.png" class="img-responsive" />
+</div>
+</div>
+<hr />
+<p class="text-center">
+    By clicking "Register", you agree that you understand our <strong>Terms of use</strong> and <strong>Privacy statement</strong>.
+</p>

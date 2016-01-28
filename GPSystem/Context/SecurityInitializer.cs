@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GPSystem.Context
 {
-    public class SecurityInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class SecurityInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 

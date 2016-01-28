@@ -1,57 +1,60 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-@if (Request.IsAuthenticated)
-{
-    <p class="alert-link col-md-1" style="padding: 10px;"><span id="txt"></span></p>
-}
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Welcome to God's Prosperity</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <span style="font-size: 30px;">G</span>od's Prosperity is in the process of developing a
+            ministry application for Christian churches to assist Pastors with Church Management and Communication.
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    
+    <div style="padding-top: 60px;" class="animated slideInLeft">
+        <div class="col-md-3 col-md-offset-0"> 
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    Events
+                </div>
+                <div class="panel-body">
+                    <p>
+                        This feature will allow the church pastor to create events for the church which will be visible to all church members.
+                        The church members will also be able to add comments and views based on that event. 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    Groups
+                </div>
+                <div class="panel-body">
+                    <p>
+                        You have a team or discussion that should be open to specific members?
+                        Then this is the feature to use. Create a group where only allowed members will be able to see and send messages!
+                        This is simply a chatroom!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    News
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Want to know whats happening within your church? 
+                        News will provide you with feeds from you church, from events to updates, all will be listed and available to you.
+                        This is simply a chatroom!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br />
+        <p class="col-md-12 alert alert-warning"><strong>Note! </strong> To use these featues you have to register or login.</p>
     </div>
 </div>
-<hr />
-
-<script>
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('txt').innerHTML =
-        "<span style='font-size: 18px; font-weight: bold;'>" + h + "</span>" + ":"
-        + "<span style='font-size: 15px; font-weight: bold;'>" + m + "</span>" + ":" + s
-        var t = setTimeout(startTime, 500);
-    }
-    function checkTime(i) {
-        if (i < 10) { i = "0" + i }  // add zero in front of numbers < 10
-        return i
-    }
-
-    startTime()
-</script>

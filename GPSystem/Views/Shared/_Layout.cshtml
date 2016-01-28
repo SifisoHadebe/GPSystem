@@ -39,13 +39,10 @@
         @RenderBody()
             </div>
     <br /><br />
-                <footer>
-                    <div class="text-center navbar navbar-inverse" style="width: 100%; color: #eee; border-radius: 0px; padding: 10px; border: none;">
-            <p>&copy; @DateTime.Now.Year - God's Prosperity @if (ViewBag.Church !=null) {@ViewBag.Church}</p>
-            <p style="margin-top: -10px; margin-bottom: -1px;">
-                @Html.ActionLink("Privacy Statement", "Privacy", "Home", new { @style="text-decoration: none;"}) | 
-                @Html.ActionLink("Terms of Use", "Terms", "Home", new { @style = "text-decoration: none;" }) 
-            </p>
+                
+    <footer>
+        <div class="text-center navbar navbar-inverse" style="width: 100%; color: #eee; border-radius: 0px; padding-top: 10px; border: none;">
+            <p style="margin-top: 10px;">&copy; @DateTime.Now.Year - God's Prosperity | @if (ViewBag.Church !=null) {@ViewBag.Church}</p>
         </div>
     </footer>
 
