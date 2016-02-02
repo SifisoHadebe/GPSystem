@@ -7,6 +7,7 @@ namespace GPSystem.Models
 {
     public class IndexModelView
     {
+        public List<Post> Posts { get; set; }
         public List<Event> Events { get; set; }
 
         public List<ApplicationUser> Members { get; set; }

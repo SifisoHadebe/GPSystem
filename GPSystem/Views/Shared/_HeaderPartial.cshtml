@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <h4 style="font-weight: bold; margin-top: 220px;">GP Dashboard</h4>
+    <h4 style="font-weight: bold; padding-top: 4px;">GP Dashboard</h4>
 }else if (Request.IsAuthenticated && User.IsInRole("Member"))
 {
     <h4 style="font-weight: bold; padding-top:3px;">@ViewBag.Church</h4>

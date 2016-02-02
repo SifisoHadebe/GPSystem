@@ -19,17 +19,18 @@ namespace GPSystem.Models
 
         public string Author { get; set; }
 
-        [Required]
-        [MaxLength(25)]
+        [Required(ErrorMessage ="A post must have a topic")]
+        [MaxLength(50)]
         public string Topic { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A post needs to have some text.")]
+        [StringLength(200, ErrorMessage = "You have exceeded the character count, please remove some words and try again")]
         public string Text { get; set; }
 
         public DateTime Date { get; set; }
 
-        public String Picture { get; set; }
-
         public bool? Public { get; set; }
+
+        public virtual List<PostPictures> Pictures { get; set; }
     }
 }

@@ -40,7 +40,7 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
 {
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Home", "Index", "Church")</li>
-        <li>@Html.ActionLink("News", "Index", "Church")</li>
+        <li>@Html.ActionLink("News", "Index", "News")</li>
         <li>@Html.ActionLink("Groups", "Index", "Group")</li>
         <li>@Html.ActionLink("Events", "Index", "Event")</li>
         <li>@Html.ActionLink("About", "Contact", "Home")</li>

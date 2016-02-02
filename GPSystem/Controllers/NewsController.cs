@@ -24,6 +24,7 @@ namespace GPSystem.Controllers
             string currentUserId = User.Identity.GetUserId(); //getting userId
             var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
             ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+            ViewBag.Church = db.Church.Find(query.ChurchId).Name;
             #endregion
 
             var posts = (from x in db.Post
@@ -37,8 +38,27 @@ namespace GPSystem.Controllers
         // GET: News/Details/5
         public ActionResult Details(int id)
         {
-            var post = db.Post.Find(id);
-            return View(post);
+            #region
+            string currentUserId = User.Identity.GetUserId(); //getting userId
+            var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+            ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+            ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+            #endregion
+
+            PostView pv = new PostView();
+
+            pv.Post = db.Post.Where(x => x.Id == id).Single();
+
+            try
+            {
+                pv.Pics = db.PostPicture.Where(x => x.PostId == pv.Post.Id).Single();
+            }catch (Exception)
+            {
+                pv.Pics = null;
+            }
+           
+
+            return View(pv);
         }
 
         // GET: News/Create
@@ -55,6 +75,7 @@ namespace GPSystem.Controllers
             string currentUserId = User.Identity.GetUserId(); //getting userId
             var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
             ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+            ViewBag.Church = db.Church.Find(query.ChurchId).Name;
             #endregion
 
             try
@@ -62,13 +83,13 @@ namespace GPSystem.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    P.Author = query.Id;
+                    P.Author = query.Name + " " + query.Surname;
                     P.ChurchId = query.ChurchId;
                     P.Date = DateTime.Now;
                     db.Post.Add(P);
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "PostPictures", new { Id = P.Id});
             }
             catch(Exception ex)
             {

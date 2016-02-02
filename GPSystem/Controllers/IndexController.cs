@@ -24,10 +24,17 @@ namespace GPSystem.Controllers
                 string currentUserId = User.Identity.GetUserId(); //getting userId
                 var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
                 ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                ViewBag.Church = db.Church.Find(query.ChurchId).Name;
                 #endregion
 
-                ViewBag.Church = db.Church.Find(query.ChurchId).Name;
                 IndexModelView imv = new IndexModelView();
+
+                imv.Posts = (from p in db.Post
+                             where p.ChurchId == query.ChurchId
+                             
+                             orderby p.Date descending
+                             select p).Take(3).ToList();
+
                 imv.Events = (from e in db.Event
                               where e.ChurchId == query.ChurchId
                               orderby e.EventDate descending
