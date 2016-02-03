@@ -29,12 +29,12 @@ namespace GPSystem.Controllers
         [HttpPost]
         public ActionResult Upload(long Id, HttpPostedFileBase file)
         {
-            string path = Server.MapPath("~/imgRepo/PostRepo/" + file.FileName);
+            string path = Server.MapPath("~/imgRepo/PostRepo/" + Id + file.FileName);
 
             PostPictures p = new PostPictures();
 
             p.PostId = Id;
-            p.FileName = file.FileName;
+            p.FileName = Id + file.FileName;
 
             db.PostPicture.Add(p);
             db.SaveChanges();
