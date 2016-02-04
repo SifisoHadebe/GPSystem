@@ -185,6 +185,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PostPicturesController.cs" />
+    <Compile Include="Controllers\SmsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +197,10 @@
     <Compile Include="Migrations\201601290813298_addPostPics.cs" />
     <Compile Include="Migrations\201601290813298_addPostPics.Designer.cs">
       <DependentUpon>201601290813298_addPostPics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602030915081_sms.cs" />
+    <Compile Include="Migrations\201602030915081_sms.Designer.cs">
+      <DependentUpon>201602030915081_sms.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -214,6 +219,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostPictures.cs" />
     <Compile Include="Models\PostView.cs" />
+    <Compile Include="Models\SmsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -337,6 +343,8 @@
     <Content Include="Views\Mail\Create.cshtml" />
     <Content Include="Views\PostPictures\Index.cshtml" />
     <Content Include="Views\PostPictures\Upload.cshtml" />
+    <Content Include="Views\Sms\Index.cshtml" />
+    <Content Include="Views\Sms\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601290813298_addPostPics.resx">
       <DependentUpon>201601290813298_addPostPics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602030915081_sms.resx">
+      <DependentUpon>201602030915081_sms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

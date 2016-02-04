@@ -30,6 +30,8 @@ namespace GPApp.Context
 
         public System.Data.Entity.DbSet<GPSystem.Models.MailModel> MailModels { get; set; }
 
+        public DbSet<SmsModel> Sms { get; set; }
+
         public DbSet<PostPictures> PostPicture { get; set; }
     }
 }

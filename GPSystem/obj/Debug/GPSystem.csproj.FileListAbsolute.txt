@@ -133,9 +133,10 @@ C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\bin\Mic
 C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.Migrations._1.resources
+C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.Migrations.addPostPics.resources
+C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.csproj.GenerateResource.Cache
 C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.dll
 C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.pdb
-C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.Migrations._1.resources
-C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.csproj.GenerateResource.Cache
-C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.Migrations.addPostPics.resources
+C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.Migrations.sms.resources
 C:\Users\Khulani\Documents\Visual Studio 2015\Projects\GPSystem\GPSystem\obj\Debug\GPSystem.csprojResolveAssemblyReference.cache
