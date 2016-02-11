@@ -7,12 +7,17 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GPSystem.Models;
+using GPApp.Context;
 
 namespace GPSystem.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+
+        private GPSystemContext db = new GPSystemContext();
+        private ApplicationDbContext ac = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -329,6 +334,28 @@ namespace GPSystem.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        public ActionResult Details()
+        {
+            #region
+            string currentUserId = User.Identity.GetUserId(); //getting userId
+            var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+            ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+            #endregion
+
+            ViewBag.Name = query.Name + " " + query.Surname;
+            ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+
+            ApplicationUser u = new ApplicationUser();
+
+            u = (from x in ac.Users
+                 where x.Id == query.Id
+                 select x).Single();
+
+            ViewBag.Age = ((u.DateOfBirth.Year - DateTime.Today.Year) * -1) + " Yrs";
+
+            return View(u);
         }
 
 #region Helpers

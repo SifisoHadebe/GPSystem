@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201602030915081_sms.Designer.cs">
       <DependentUpon>201602030915081_sms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602081130511_DoB.cs" />
+    <Compile Include="Migrations\201602081130511_DoB.Designer.cs">
+      <DependentUpon>201602081130511_DoB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Church.cs" />
@@ -255,11 +259,14 @@
     <Content Include="App_Code\TwitterGoodies.cshtml" />
     <Content Include="Facebook\Login.cshtml" />
     <Content Include="App_Code\Facebook.cshtml" />
+    <Content Include="fonts\SourceSansPro-Black.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="imgRepo\Bg.jpg" />
     <Content Include="imgRepo\calendar-daily-date-day-event-history-month-plan.png" />
     <Content Include="imgRepo\Calender.png" />
     <Content Include="imgRepo\glad-tidings-of-great-joy-the-birth-of-jesus-christ.png" />
     <Content Include="imgRepo\jesus_png_9_by_mariamlouis-d5ew6py.png" />
+    <Content Include="imgRepo\Logo.png" />
     <Content Include="imgRepo\News.png" />
     <Content Include="imgRepo\photo.jpg" />
     <Content Include="imgRepo\profilePic\User-icon.png" />
@@ -345,6 +352,7 @@
     <Content Include="Views\PostPictures\Upload.cshtml" />
     <Content Include="Views\Sms\Index.cshtml" />
     <Content Include="Views\Sms\Create.cshtml" />
+    <Content Include="Views\Manage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602030915081_sms.resx">
       <DependentUpon>201602030915081_sms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602081130511_DoB.resx">
+      <DependentUpon>201602081130511_DoB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

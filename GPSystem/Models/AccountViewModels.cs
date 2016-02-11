@@ -2,6 +2,7 @@
 using GPSys.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace GPSystem.Models
 {
@@ -97,6 +98,10 @@ namespace GPSystem.Models
 
         [Required(ErrorMessage = "Gender is required")]
         public Gender Gender { get; set; }
+
+        [Required(ErrorMessage = "A date of birth is required")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime DateOfBirth { get; set; }
     }
 
     public class ResetPasswordViewModel

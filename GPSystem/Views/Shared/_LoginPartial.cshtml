@@ -43,7 +43,7 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
         <li>@Html.ActionLink("News", "Index", "News")</li>
         <li>@Html.ActionLink("Groups", "Index", "Group")</li>
         <li>@Html.ActionLink("Events", "Index", "Event")</li>
-        <li>@Html.ActionLink("About", "Contact", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Index")</li>
     </ul>
 
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -52,12 +52,15 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <div class="dropdown" style="margin-top: 8px;">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        @ViewBag.Fullname
-                        <span class="caret"></span>
+                    <button class="btn btn-default dropdown-toggle rightButton" type="button" data-toggle="dropdown" >
+                        @*@ViewBag.Fullname*@
+                        <div class="avatar animated rotateInDownLeft" style="animation-duration: 2s; box-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+                            <img src="~/imgRepo/user.png" class="img-circle img-responsive center-block" />
+                        </div>
+                        
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href=""><span class="glyphicon glyphicon-cog"></span> Profile</a></li>
+                        <li>@Html.ActionLink("Profile", "Details", "Manage")</li>
                         <li class="divider"></li>
                         <li>@Html.ActionLink("Members", "Index", "Member")</li>
                         <li><a href="#">SMS</a></li>

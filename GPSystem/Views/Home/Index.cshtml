@@ -2,15 +2,26 @@
     ViewBag.Title = "Home Page";
 }
 <div class="container">
-    <div class="jumbotron">
-        <h2>Welcome to God's Prosperity</h2>
-        <p>
-            <span style="font-size: 30px;">G</span>od's Prosperity is in the process of developing a
-            ministry application for Christian churches to assist Pastors with Church Management and Communication.
-        </p>
+    <p id="scroller"><span class="glyphicon glyphicon-chevron-down" style="color: #eee; position: fixed; top: 87%; font-size: 28px; background-color: rgba(0,0,0,0.2); padding: 18px 15px 15px 18px; border-radius: 100px; text-shadow: 2px 2px 4px #333;"></span></p>
+    <p id="scrollerBack" style="display: none"><span class="glyphicon glyphicon-chevron-up" style="color: #eee; position: fixed; top: 87%; font-size: 28px; background-color: rgba(0,0,0,0.2); padding: 18px 15px 15px 18px; border-radius: 100px; text-shadow: 2px 2px 4px #333;"></span></p>
+
+    <div class="Newrow" id="topRow">
+        <img src="~/imgRepo/Logo.png" class="center-block img-circle img-responsive Breather" style="width: 120px;" />
+        <p class="text-center" style="color: #eee; padding-top: 18px; font-weight: bold;">God's Prosperity</p>
+    </div>
+        
+    <div class="Newrow" id="mid" style="padding-top: 200px;">
+        <div class="jumbotron">
+            <h2>Welcome to God's Prosperity</h2>
+            <p style="font-weight: normal;">
+                <span style="font-size: 30px;">G</span>od's Prosperity is in the process of developing a
+                ministry application for Christian churches to assist Pastors with Church Management and Communication.
+            </p>
+        </div>
     </div>
     
-    <div style="padding-top: 60px;" class="animated slideInLeft">
+    
+    <div style="padding-top: 15%; padding-bottom:38%;" class="animated slideInLeft" id="last">
         <div class="col-md-3 col-md-offset-0"> 
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
@@ -58,3 +69,37 @@
         <p class="col-md-12 alert alert-warning"><strong>Note! </strong> To use these featues you have to register or login.</p>
     </div>
 </div>
+
+<script>
+    //$("#scroller").click(function () {
+    //    $(window).scrollTop($('#mid').offset().top).animate('', 2000);
+    //});
+    var count = 0;
+
+    $("#scroller").click(function () {
+        if (count == 0) {
+            $("html, body").animate({
+                scrollTop: $('#mid').offset().top
+            }, 1000);
+            $('#mid>div.jumbotron').delay(1000).addClass("animated flipInX");
+            count++;
+        } else {
+            $("html, body").animate({
+                scrollTop: $('#last').offset().top
+            }, 1000);
+            $("#scroller").toggle(1000);
+            $("#scrollerBack").toggle(1000).style("top", "85%");
+            count++;
+        }
+    });
+
+    $("p#scrollerBack").click(function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 1000);
+        $("p#scrollerBack").toggle(1000);
+        $("#scroller").toggle(1000);
+        count = 0;
+    });
+
+</script>

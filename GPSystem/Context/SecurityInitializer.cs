@@ -38,6 +38,7 @@ namespace GPSystem.Context
                     ChurchId = 1,
                     UserName = name,
                     Email = name,
+                    DateOfBirth = DateTime.Today,
                     Gender = GPSys.Models.Gender.Female
                 };
                 var result = UserManager.Create(user, password);

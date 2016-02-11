@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using GPSys.Models;
+using System;
 
 namespace GPSystem.Models
 {
@@ -33,6 +34,10 @@ namespace GPSystem.Models
 
         [Required(ErrorMessage = "Gender is required")]
         public Gender Gender { get; set; }
+
+        [Required(ErrorMessage = "A date of birth is required")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime DateOfBirth { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

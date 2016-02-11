@@ -3,7 +3,7 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title</h2><hr />
+<h2>@ViewBag.Title</h2>
 <div class="animated slideInRight">
 <div class="col-md-6">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -13,6 +13,7 @@
             <label class = "col-md-4 control-label">Name <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -20,6 +21,7 @@
             <label class="col-md-4 control-label">Surname <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -27,6 +29,7 @@
             <label class="col-md-4 control-label">Email <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -34,29 +37,42 @@
             <label class="col-md-4 control-label">Password <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label">Confirm Password <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <legend>Miscellaneous Info</legend>
+        <legend style="color: #fff">Miscellaneous Info</legend>
+
+        <div class="form-group">
+            <span style="color: #ddd; padding-left: 17px;">MM/DD/YYYY</span>
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", id = "datepicker" }, @type = "date" })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label">Gender <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
                 @Html.EnumDropDownListFor(m => m.Gender, "Select Gender", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label">Church I Belong To <sup style="color: #bb4848">*</sup></label>
             <div class="col-md-8">
-                @Html.DropDownListFor(m => m.ChurchId, new SelectList(ViewBag.Churches, "Id", "Name"), "Select a church", new { @class = "form-control" })
-                Can't find your church? <a href="">Request It.</a> <br />
+                @Html.DropDownListFor(m => m.ChurchId, new SelectList(ViewBag.Churches, "Id", "Name"), "Select a church", new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Church, "", new { @class = "text-danger" })
+                <p style="color: #ddd;">Can't find your church? <a href="">Request It.</a></p>
             </div>
         </div>              
 
@@ -74,8 +90,21 @@
 <div class="col-md-5 col-md-offset-1">
     <img src="~/imgRepo/jesus_png_9_by_mariamlouis-d5ew6py.png" class="img-responsive" />
 </div>
+
+    <div class="col-md-12">
+        <p class="text-center" style="color: #ddd">
+            By clicking "Register", you agree that you understand our <strong>Terms of use</strong> and <strong>Privacy statement</strong>.
+        </p>
+    </div>
+
 </div>
-<hr />
-<p class="text-center">
-    By clicking "Register", you agree that you understand our <strong>Terms of use</strong> and <strong>Privacy statement</strong>.
-</p>
+
+
+<script>
+    var date = new Date().getDay() + 1;
+  $(function() {
+      $("#datepicker").datepicker({
+          maxDate : 2010
+      });
+  });
+</script>

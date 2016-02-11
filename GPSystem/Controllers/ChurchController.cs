@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GPApp.Controllers
 {
@@ -18,10 +19,9 @@ namespace GPApp.Controllers
         // GET: Church
         public ActionResult Index()
         {
-            try
-            {
                 if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
+                try {
                     #region
                     string currentUserId = User.Identity.GetUserId(); //getting userId
                     var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
@@ -35,16 +35,18 @@ namespace GPApp.Controllers
 
                     return View(list);
                 }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+                }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = ex.Message;
-                return View();
-            }
             
         }
 
@@ -53,16 +55,25 @@ namespace GPApp.Controllers
         {
             if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
-                string currentUserId = User.Identity.GetUserId(); //getting userId
-                var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
-                ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                try {
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
 
-                if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                var c = db.Church.Find(id);
-                if (c == null)
-                    return HttpNotFound();
-                return View(c);
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    var c = db.Church.Find(id);
+                    if (c == null)
+                        return HttpNotFound();
+                    return View(c);
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
             }
             else
             {
@@ -75,10 +86,20 @@ namespace GPApp.Controllers
         {
             if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
-                string currentUserId = User.Identity.GetUserId(); //getting userId
-                var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
-                ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
-                return View();
+                try
+                {
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    return View();
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
             }
             else
             {
@@ -110,15 +131,24 @@ namespace GPApp.Controllers
         {
             if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
-                string currentUserId = User.Identity.GetUserId(); //getting userId
-                var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
-                ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                try {
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
 
-                if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                if (db.Church.Find(id) == null)
-                    return HttpNotFound();
-                return View(db.Church.Find(id));
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    if (db.Church.Find(id) == null)
+                        return HttpNotFound();
+                    return View(db.Church.Find(id));
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
             }
             else
             {
@@ -151,11 +181,27 @@ namespace GPApp.Controllers
         // GET: Church/Delete/5
         public ActionResult Delete(int? id)
         {
-                if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                if (db.Church.Find(id) == null)
-                    return HttpNotFound();
-                return View(db.Church.Find(id));
+            if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                try {
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    if (db.Church.Find(id) == null)
+                        return HttpNotFound();
+                    return View(db.Church.Find(id));
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Church/Delete/5

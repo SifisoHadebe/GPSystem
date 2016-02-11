@@ -164,8 +164,15 @@ namespace GPSystem.Controllers
                     ChurchId = model.ChurchId,
                     UserName = model.Email,
                     Email = model.Email,
-                    Gender = model.Gender
+                    Gender = model.Gender,
+                    DateOfBirth = model.DateOfBirth
                 };
+
+                if (model.DateOfBirth.Year > 2010)
+                {
+                    return View(model);
+                }
+
                 ViewBag.Churches = new SelectList(db.Church, "Id", "Name");
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

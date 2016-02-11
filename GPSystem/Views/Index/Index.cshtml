@@ -15,8 +15,7 @@
             <div class="panel-body">
                 <table class="table table-responsive table-striped">
                     <tbody>
-                        @if (Model != null)
-            {
+                        @if (Model.Posts.Count != 0){
                 foreach (var post in Model.Posts)
                 {
                         <tr>
@@ -28,10 +27,21 @@
                         </tr>
                             }
                         }
+                        else
+                        {
+                            <p style="padding-top: 20px; font-size: 19px;" class="text-center">
+                                <span class="glyphicon glyphicon-exclamation-sign breathe" style="font-size: 50px;"></span>
+                                <br />
+                                There are no Posts created.
+                            </p>
+                        }
+                        @if (Model.Events.Count != 0)
+                        {
+                            <p style="padding-left: 5px;">@Html.ActionLink("More News", "Index", "News")</p>
+                        }
                     </tbody>
                 </table>
 
-                <p style="padding-left: 5px;">@Html.ActionLink("More News", "Index", "News")</p>
             </div>
         </div>
 
@@ -121,11 +131,11 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading" style="">
-                <span class="first animated slideInLeft">N</span>otification Panel
+                <span class="first animated slideInLeft">I</span>nfo Panel
             </div>
             <div class="text-left" style="padding: 10px;">
                 <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-time first"></span> </strong> <span id="txt" style="padding-left: 10px;"></span></p>
-                <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-envelope first"></span> </strong> <span style="padding-left: 10px;">22</span></p>
+                <p style="border-bottom: 1px solid #ccc; padding-top: 10px;"><strong><span style="font-size: 19px; padding-left: 1px;" class="glyphicon glyphicon-calendar"></span> </strong> <span id="date" style="padding-left: 10px;">22</span></p>
                 <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-comment first"></span> </strong> <span style="padding-left: 10px;">22</span></p>
             </div>
         </div>
@@ -148,16 +158,24 @@
 
 <script>
     function startTime() {
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+        ];
         var today = new Date();
         var h = today.getHours();
         var m = today.getMinutes();
         var s = today.getSeconds();
+
+        var date = "<span style='font-size: 18px; padding-left:2px; font-weight: bold;'>" +today.getDay() + "</span> " + monthNames[today.getMonth()] + " " + today.getFullYear();
+
         m = checkTime(m);
         s = checkTime(s);
         document.getElementById('txt').innerHTML =
         "<span style='font-size: 18px; font-weight: bold;'>" + h + "</span>" + ":"
         + "<span style='font-size: 16px; font-weight: bold;'>" + m + "</span>" + ":" + s
         var t = setTimeout(startTime, 500);
+
+        document.getElementById('date').innerHTML = date;
     }
     function checkTime(i) {
         if (i < 10) { i = "0" + i }  // add zero in front of numbers < 10

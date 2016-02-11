@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GPSystem.Controllers
 {
@@ -17,14 +18,14 @@ namespace GPSystem.Controllers
         // GET: Event
         public ActionResult Index()
         {
-            try
-            {
                 if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
                 {
+                try {
                     #region
                     string currentUserId = User.Identity.GetUserId(); //getting userId
                     var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
                     ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    ViewBag.Church = db.Church.Find(query.ChurchId).Name;
                     #endregion
 
                     var list = from e in db.Event
@@ -33,70 +34,146 @@ namespace GPSystem.Controllers
                                select e;
                     return View(list);
                 }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+                }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
                 
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = ex.Message;
-                return View();
-            }
         }
 
         // GET: Event/Details/5
         public ActionResult Details(int id)
         {
-            var Event = db.Event.Find(id);
-            ViewBag.Month = Event.EventDate.ToString("MMM");
-            ViewBag.key = User.Identity.GetUserId();
-            return View(Event);
+            if(Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member")) {
+                try
+                {
+                    #region
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+                    #endregion
+
+                    var Event = db.Event.Find(id);
+                                ViewBag.Month = Event.EventDate.ToString("MMM");
+                                ViewBag.key = User.Identity.GetUserId();
+                                return View(Event);
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Event/Create
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
+            {
+                try
+                {
+                    #region
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+                    #endregion
+
+                    return View();
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            else { return RedirectToAction("Index", "Home");  }
         }
 
         // POST: Event/Create
         [HttpPost]
         public ActionResult Create(Event e)
         {
-
-            #region
-            string currentUserId = User.Identity.GetUserId(); //getting userId
-            var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
-            ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
-            #endregion
-
-            try
+            if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
             {
-                // TODO: Add insert logic here
-                if (ModelState.IsValid)
+                try
                 {
-                    e.DateCreated = DateTime.Now;
-                    e.Archive = false;
-                    e.ArchiveDate = DateTime.Now;
-                    e.ChurchId = query.ChurchId;
+                    #region
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+                    #endregion
 
-                    db.Event.Add(e);
-                    db.SaveChanges();
+                    // TODO: Add insert logic here
+                    if (ModelState.IsValid)
+                    {
+                        e.DateCreated = DateTime.Now;
+                        e.Archive = false;
+                        e.ArchiveDate = DateTime.Now;
+                        e.ChurchId = query.ChurchId;
+
+                        db.Event.Add(e);
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
             }
-            catch
+            else
             {
                 return View();
             }
+            
+
+            
         }
 
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
+            {
+                try
+                {
+                    return View();
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Event/Edit/5
@@ -106,8 +183,10 @@ namespace GPSystem.Controllers
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
+                    return RedirectToAction("Index");
+                else
+                    return View();
             }
             catch
             {
@@ -118,7 +197,30 @@ namespace GPSystem.Controllers
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
+            {
+                try
+                {
+                    #region
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+                    #endregion
+                    return View();
+                }
+                catch
+                {
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Event/Delete/5
@@ -139,21 +241,36 @@ namespace GPSystem.Controllers
 
         public bool Comment(long Id,string comment)
         {
-            #region
-            string currentUserId = User.Identity.GetUserId(); //getting userId
-            var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
-            ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
-            #endregion
+            if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Member"))
+            {
+                try
+                {
+                    #region
+                    string currentUserId = User.Identity.GetUserId(); //getting userId
+                    var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+                    ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+                    ViewBag.Church = db.Church.Find(query.ChurchId).Name;
+                    #endregion
 
-            EventComment c = new EventComment();
-            c.EventId = Id;
-            c.Date = DateTime.Now;
-            c.UserId = query.Id;
-            c.Text = comment;
+                    EventComment c = new EventComment();
+                    c.EventId = Id;
+                    c.Date = DateTime.Now;
+                    c.UserId = query.Id;
+                    c.Text = comment;
 
-            db.EventComment.Add(c);
-            db.SaveChanges();
-            return true;
+                    db.EventComment.Add(c);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool removeComment(long Id)
