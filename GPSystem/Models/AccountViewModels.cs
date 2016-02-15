@@ -102,6 +102,8 @@ namespace GPSystem.Models
         [Required(ErrorMessage = "A date of birth is required")]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime DateOfBirth { get; set; }
+
+        public string profilePic { get; set; }
     }
 
     public class ResetPasswordViewModel

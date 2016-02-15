@@ -206,6 +206,14 @@
     <Compile Include="Migrations\201602081130511_DoB.Designer.cs">
       <DependentUpon>201602081130511_DoB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602112249322_pp.cs" />
+    <Compile Include="Migrations\201602112249322_pp.Designer.cs">
+      <DependentUpon>201602112249322_pp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602121933563_Update-Entities.cs" />
+    <Compile Include="Migrations\201602121933563_Update-Entities.Designer.cs">
+      <DependentUpon>201602121933563_Update-Entities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Church.cs" />
@@ -353,6 +361,7 @@
     <Content Include="Views\Sms\Index.cshtml" />
     <Content Include="Views\Sms\Create.cshtml" />
     <Content Include="Views\Manage\Details.cshtml" />
+    <Content Include="Views\Account\profilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -375,6 +384,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602081130511_DoB.resx">
       <DependentUpon>201602081130511_DoB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602112249322_pp.resx">
+      <DependentUpon>201602112249322_pp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602121933563_Update-Entities.resx">
+      <DependentUpon>201602121933563_Update-Entities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

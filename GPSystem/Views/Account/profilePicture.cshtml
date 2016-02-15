@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "profilePicture";
+}
+<h3>@ViewBag.Id</h3>
+@using (Html.BeginForm("profilePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class="hidden" }))
+{
+    <input type="File" name="file" class="form-control" required />
+    <input type="submit" value="Add picture" class="btn btn-sm btn-success" />
+}
+
+<div class="text-center">
+    <h3>Add Picture Picture </h3>
+    <div style="padding-top: 20px;">
+        <div class="center-block" style="width: 200px; height: 200px; background-color: rgba(0,0,0,0.2); border-radius: 100px;">
+            <a href="#"><span class="glyphicon glyphicon-plus" style="height: 200px; width: 200px; font-size: 50px; padding-top: 75px; padding-left: 5px;"></span></a>
+        </div>
+    </div>
+
+    <a class="btn btn-primary" href="#s" style="padding: 8px 28px 8px 28px; margin-top: 30px;">Save</a>
+
+    <a class="btn btn-primary" href="#s" style="padding: 8px 28px 8px 28px; margin-top: 30px; margin-left: 20px;">Save</a>
+
+</div>
+
+
+<script>
+    $("a[href=#]").click(function () {
+        $("input[type=File]").click();
+    });
+
+    $("a[href=#s]").click(function () {
+        $("input[type=submit]").click();
+    });
+
+</script>

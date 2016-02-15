@@ -136,7 +136,7 @@
             <div class="text-left" style="padding: 10px;">
                 <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-time first"></span> </strong> <span id="txt" style="padding-left: 10px;"></span></p>
                 <p style="border-bottom: 1px solid #ccc; padding-top: 10px;"><strong><span style="font-size: 19px; padding-left: 1px;" class="glyphicon glyphicon-calendar"></span> </strong> <span id="date" style="padding-left: 10px;">22</span></p>
-                <p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-comment first"></span> </strong> <span style="padding-left: 10px;">22</span></p>
+                @*<p style="border-bottom: 1px solid #ccc;"><strong><span class="glyphicon glyphicon-comment first"></span> </strong> <span style="padding-left: 10px;">22</span></p>*@
             </div>
         </div>
 
@@ -166,7 +166,7 @@
         var m = today.getMinutes();
         var s = today.getSeconds();
 
-        var date = "<span style='font-size: 18px; padding-left:2px; font-weight: bold;'>" +today.getDay() + "</span> " + monthNames[today.getMonth()] + " " + today.getFullYear();
+        var date = "<span style='font-size: 18px; padding-left:2px; font-weight: bold;'>" + today.getDate() + "</span> " + monthNames[today.getMonth()] + " " + today.getFullYear();
 
         m = checkTime(m);
         s = checkTime(s);

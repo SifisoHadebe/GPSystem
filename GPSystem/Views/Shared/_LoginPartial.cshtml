@@ -54,8 +54,8 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
                 <div class="dropdown" style="margin-top: 8px;">
                     <button class="btn btn-default dropdown-toggle rightButton" type="button" data-toggle="dropdown" >
                         @*@ViewBag.Fullname*@
-                        <div class="avatar animated rotateInDownLeft" style="animation-duration: 2s; box-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
-                            <img src="~/imgRepo/user.png" class="img-circle img-responsive center-block" />
+                        <div class="avatar animated rotateInDownLeft" style="animation-duration: 2s; width: 50px; height:50px;">
+                            <img src="~/imgRepo/profilePic/f9e0e614-8899-4673-9640-e766d4823b96WIN_20160211_155746.jpg" class="img-responsive center-block" style="height: 100%;"  />
                         </div>
                         
                     </button>
@@ -63,7 +63,7 @@ else if (Request.IsAuthenticated && User.IsInRole("Member"))
                         <li>@Html.ActionLink("Profile", "Details", "Manage")</li>
                         <li class="divider"></li>
                         <li>@Html.ActionLink("Members", "Index", "Member")</li>
-                        <li><a href="#">SMS</a></li>
+                        <li><a href="@Url.Action("Create", new { @controller="Sms"})">SMS</a></li>
                         <li><a href="#">Chat</a></li>
                         <li><a href="#">Emailer</a></li>
                         <li class="divider"></li>

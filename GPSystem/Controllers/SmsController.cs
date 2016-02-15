@@ -59,6 +59,25 @@ namespace GPSystem.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult getMembers()
+        {
+            #region
+            string currentUserId = User.Identity.GetUserId(); //getting userId
+            var query = ac.Users.SingleOrDefault(x => x.Id == currentUserId); //Getting UserInfo
+            ViewBag.Fullname = query.Name + " " + query.Surname;  //Setting fullname for user
+            #endregion
+
+            var members = (from u in ac.Users
+                           where u.ChurchId == query.ChurchId
+                           select new
+                           {
+                               Id = u.Id,
+                               Name = u.Name + " " + u.Surname
+                           }).ToList();
+
+            return Json(members, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

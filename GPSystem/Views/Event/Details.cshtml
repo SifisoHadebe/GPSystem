@@ -71,9 +71,9 @@
                     items +="</ul>";
                     $("#commentsList").html(items);
                 }else{
-                    var items = "<div class='text-center animated flip'>";
-                        items +="<img src='"+ "../../imgRepo/walk.gif" + "' class='img-responsive center-block' style='height: 200px;'  />";
-                        items += "<h3 style='position: relative; top:-40px;'>No comments yet</h3>";
+                    var items = "<div class='text-center'>";
+                        
+                        items += "<h3 style='position: relative; top:20px;'>No comments yet</h3>";
                         $("#commentsList").html(items).css(['height','20px']);
                 }
             });

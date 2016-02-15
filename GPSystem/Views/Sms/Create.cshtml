@@ -4,41 +4,58 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="col-md-6 col-md-offset-3">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="form-horizontal">
+            <h1 style="margin-bottom: -15px; font-size: 70px;" class="text-center"><span class="glyphicon glyphicon-envelope"></span></h1>
+            <h4 class="text-center">Send Sms</h4>
+            <hr />
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>SmsModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                @Html.Label("To", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" id="options">
+                    <select class="form-control">
+                        <option selected>--Select Option--</option>
+                        <option value="1">One Member</option>
+                        <option value="2">Many Member</option>
+                        <option value="3">All Member</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.RecepientId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RecepientId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RecepientId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RecepientId, "", new { @class = "text-danger" })
+            <div class="form-group" id="member" style="display: none;">
+                @Html.Label("Member", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" id="members">
+                        
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Message", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" }, @rows="6", style="width: 100%;" })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Send" class="btn btn-success btn-sm" style="padding: 10px 20px;" />
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -47,3 +64,37 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    $("select").change(function (e) {
+        alert($(this).val());
+        prepare($(this).val());
+    });
+
+    function prepare(x) {
+        if (x == 1) {
+            fill();
+            $("div#member").toggle(1000);
+        } else {
+            $("div#member").hide(1000);
+        }
+    }
+
+    //get Church Members
+    function fill() {
+        select = document.getElementById("members");
+
+        var members = $.post(
+            "/Sms/getMembers", ""
+            ).success(function (data) {
+                for (var x = 0; x < data.length ; x++) {
+                    elem = document.createElement("option");
+                    elem.text = data[x].Name;
+                    alert(x);
+                    select.add(elem);
+                }
+
+            });
+    }
+
+</script>

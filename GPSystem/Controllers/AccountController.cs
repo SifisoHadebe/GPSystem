@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GPSystem.Models;
 using GPApp.Context;
+using System.Collections.Generic;
 
 namespace GPSystem.Controllers
 {
@@ -147,6 +148,7 @@ namespace GPSystem.Controllers
         {
             ViewBag.Churches = db.Church.ToList();
             return View();
+            ViewBag.Churches = db.Church.ToList();
         }
 
         //
@@ -158,6 +160,7 @@ namespace GPSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.Churches = db.Church.ToList();
                 var user = new ApplicationUser {
                     Name = model.Name,
                     Surname = model.Surname,
@@ -185,7 +188,7 @@ namespace GPSystem.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    return RedirectToAction("Index", "Index");
+                    return RedirectToAction("profilePicture", new { Id = user.Id});
                 }
                 AddErrors(result);
             }
@@ -445,6 +448,23 @@ namespace GPSystem.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+
+        public ActionResult profilePicture(string Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult profilePicture(string Id, HttpPostedFileBase file)
+        {
+            string path = Server.MapPath("~/imgRepo/profilePic/" + Id + file.FileName);
+
+            db.SaveChanges();
+            file.SaveAs(path);
+            return RedirectToAction("Index", "Index");
         }
 
         #region Helpers
